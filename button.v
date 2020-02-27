@@ -41,14 +41,14 @@ pub mut:
 	width      int
 	x          int
 	y          int
-	parent ILayouter
+	parent IContainer
 	is_focused bool
 	ui         &UI
 	onclick    ButtonClickFn
 	text       string
 }
 
-fn (b mut Button) init(p &ILayouter) {
+fn (b mut Button) init(p &IContainer) {
 	parent := *p
 	b.parent = parent
 	ui := parent.get_ui()

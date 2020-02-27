@@ -18,7 +18,7 @@ pub mut:
 	width      int
 	x          int
 	y          int
-	parent ILayouter
+	parent IContainer
 	ui         &UI
 	val        int
 	min        int
@@ -35,7 +35,7 @@ pub struct ProgressBarConfig {
 	ref		&ProgressBar
 }
 
-fn (pb mut ProgressBar)init(p &ILayouter) {
+fn (pb mut ProgressBar)init(p &IContainer) {
 	parent := *p
 	pb.parent = parent
 	ui := parent.get_ui()

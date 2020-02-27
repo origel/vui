@@ -54,7 +54,7 @@ pub struct MarginConfig {
 
 // TODO rename to `Widget` once interfaces allow that :)
 pub interface IWidgeter {
-	init(ILayouter)
+	init(IContainer)
 	//key_down(KeyEvent)
 	draw()
 	//click(MouseEvent)
@@ -69,7 +69,7 @@ pub interface IWidgeter {
 }
 
 // TODO rename to `Layouter` once interfaces allow that :)
-pub interface ILayouter {
+pub interface IContainer {
 	get_ui() &UI
 	get_user_ptr() voidptr
 	size() (int, int)
@@ -81,9 +81,9 @@ pub interface ILayouter {
 	resize(w,h int)
 }
 
-pub interface IContainer {
-	set_layout(ILayouter)
-	get_layout() &ILayouter
+pub interface IContainer1 {
+	set_layout(IContainer)
+	get_layout() &IContainer
 }
 
 pub struct KeyEvent {

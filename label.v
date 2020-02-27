@@ -6,7 +6,7 @@ module vui
 pub struct Label {
 mut:
 	text   string
-	parent ILayouter
+	parent IContainer
 	x      int
 	y      int
 	ui     &UI
@@ -17,7 +17,7 @@ pub struct LabelConfig {
 	ref		&Label
 }
 
-fn (l mut Label)init(p &ILayouter) {
+fn (l mut Label)init(p &IContainer) {
 	parent := *p
 	ui := parent.get_ui()
 	l.ui = ui

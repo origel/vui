@@ -8,7 +8,7 @@ import gx
 pub struct Rectangle {
 mut:
 	text   string
-	parent ILayouter
+	parent IContainer
 	x      int
 	y      int
 	height int
@@ -30,7 +30,7 @@ pub struct RectangleConfig {
 	ref		&Rectangle
 }
 
-fn (r mut Rectangle)init(p &ILayouter) {
+fn (r mut Rectangle)init(p &IContainer) {
 	parent := *p
 	ui := parent.get_ui()
 	r.ui = ui

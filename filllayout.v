@@ -18,12 +18,12 @@ mut:
 	width    int
 	height   int
 	children []IWidgeter
-	parent   ILayouter
+	parent   IContainer
 	ui     &UI
 	align FillLayoutAlignment
 }
 
-fn (b mut FillLayout) init(p &ILayouter) {
+fn (b mut FillLayout) init(p &IContainer) {
 	parent := *p
 	b.parent = parent
 	ui := parent.get_ui()

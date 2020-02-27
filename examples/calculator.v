@@ -12,7 +12,7 @@ struct App {
 mut:
 	txtbox     vui.TextBox
 	window     &vui.Window
-	rows       []&vui.ILayouter
+	rows       []&vui.IContainer
 	result     f64
 	is_float   bool
 	new_number bool

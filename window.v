@@ -255,7 +255,7 @@ pub fn (b &vui.Window) always_on_top(val bool) {
 
 // TODO remove this
 fn foo(w IWidgeter) {}
-fn foo2(l ILayouter) {}
+fn foo2(l IContainer) {}
 
 fn bar() {
 	foo(&TextBox{})
@@ -286,7 +286,7 @@ pub fn (w mut vui.Window) set_title(title string) {
 
 }
 
-/*ILayouter Interface Methods*/
+/*IContainer Interface Methods*/
 fn (w &vui.Window) draw() {}
 
 fn (w &vui.Window) get_ui() &UI {

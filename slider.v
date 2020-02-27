@@ -25,7 +25,7 @@ pub mut:
 	orientation      Orientation = Orientation.horizontal
 	x          int
 	y          int
-	parent ILayouter
+	parent IContainer
 	ui         &UI
 	val        f32
 	min        int = 0
@@ -46,7 +46,7 @@ pub struct SliderConfig {
 	ref		&Slider
 }
 
-fn (s mut Slider)init(p &ILayouter) {
+fn (s mut Slider)init(p &IContainer) {
 	parent := *p
 	s.parent = parent
 	ui := parent.get_ui()

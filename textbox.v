@@ -37,7 +37,7 @@ pub mut:
 	width       int
 	x           int
 	y           int
-	parent ILayouter
+	parent IContainer
 	is_focused  bool
 	// gg &gg.GG
 	ui          &UI
@@ -87,7 +87,7 @@ pub struct TextBoxConfig {
 	ref			&TextBox
 }
 
-fn (tb mut TextBox)init(p &ILayouter) {
+fn (tb mut TextBox)init(p &IContainer) {
 	parent := *p
 	tb.parent = parent
 	ui :=  parent.get_ui()

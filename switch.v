@@ -22,7 +22,7 @@ pub mut:
 	width      int
 	x          int
 	y          int
-	parent     ILayouter
+	parent     IContainer
 	is_focused bool
 	open bool
 	ui         &UI
@@ -34,7 +34,7 @@ pub struct SwitchConfig {
 	open bool
 }
 
-fn (s mut Switch) init(p &ILayouter){
+fn (s mut Switch) init(p &IContainer){
 	parent := *p
 	s.parent = parent
 	ui := parent.get_ui()

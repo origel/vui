@@ -12,7 +12,7 @@ pub mut:
     width          int
     x              int
     y              int
-    parent ILayouter
+    parent IContainer
     ui             &UI
     children []IWidgeter
     margin_left int = 5
@@ -32,7 +32,7 @@ pub mut:
     children []IWidgeter
 }
 
-fn (r mut Group)init(p &ILayouter) {
+fn (r mut Group)init(p &IContainer) {
     parent := *p
     r.parent = parent
     ui := parent.get_ui()
