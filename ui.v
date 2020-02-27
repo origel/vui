@@ -81,6 +81,10 @@ pub interface ILayouter {
 	resize(w,h int)
 }
 
+pub interface IContainer {
+	set_layout(ILayouter)
+	get_layout() &ILayouter
+}
 
 pub struct KeyEvent {
 pub:
