@@ -94,8 +94,8 @@ fn (b mut Button) size() (int, int) {
 }
 
 fn (b mut Button) propose_size(w, h int) (int, int) {
-	//b.width = w
-	//b.height = h
+	b.width = w
+	b.height = h
 	//b.width = b.ui.ft.text_width(b.text) + button_horizontal_padding
 	//b.height = 20 // vertical padding
 	return b.width, b.height

@@ -279,6 +279,7 @@ fn bar() {
 fn bar2() {
 	foo2(&vui.Window{})
 	foo2(&Stack{})
+	foo(&FillLayout{})
 }
 
 pub fn (w mut vui.Window) set_title(title string) {
