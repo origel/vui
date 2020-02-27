@@ -120,5 +120,26 @@ fn (t &FillLayout) is_focused() bool {
 	return false
 }
 
-fn (t &FillLayout) resize(width, height int) {
+fn (b mut FillLayout) resize(w, h int) {
+	b.width = w
+	b.height = h
+
+	mut widgets := b.children
+	if b.align == FillLayoutAlignment.vertical {
+		mut start_y := 0
+		mut height := h/widgets.len
+		for widget in widgets {
+			widget.set_pos(0, start_y)
+			widget.propose_size(w, height)
+			start_y = start_y + height
+		}
+	}else{
+		mut start_x := 0
+		mut width := w/widgets.len
+		for widget in widgets {
+			widget.set_pos(start_x, 0)
+			widget.propose_size(width, h)
+			start_x = start_x + width
+		}
+	}
 }

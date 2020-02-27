@@ -17,6 +17,7 @@ fn main() {
 		height: win_height
 		title: 'FillLayout'
 		user_ptr: app
+		resizable: true
 	}, [
 		vui.IWidgeter(vui.fill_layout({
 			width: win_width

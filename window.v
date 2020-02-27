@@ -305,6 +305,7 @@ fn (w &vui.Window) size() (int, int) {
 }
 
 fn (window &vui.Window) resize(width, height int) {
+
 }
 
 fn (window &vui.Window) unfocus_all() {
