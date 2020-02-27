@@ -68,7 +68,11 @@ pub interface IWidgeter {
 	is_focused() bool
 }
 
-// TODO rename to `Layouter` once interfaces allow that :)
+pub interface ILayouter {
+
+}
+
+// TODO rename to `Container` once interfaces allow that :)
 pub interface IContainer {
 	get_ui() &UI
 	get_user_ptr() voidptr
@@ -79,12 +83,11 @@ pub interface IContainer {
 	//on_mousemove(MouseMoveFn)
 	draw()
 	resize(w,h int)
-}
-
-pub interface IContainer1 {
-	set_layout(IContainer)
+	set_layout(ILayouter)
 	get_layout() &IContainer
 }
+
+
 
 pub struct KeyEvent {
 pub:

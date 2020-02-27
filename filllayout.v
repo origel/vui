@@ -120,6 +120,14 @@ fn (t &FillLayout) is_focused() bool {
 	return false
 }
 
+fn (t &FillLayout) set_layout(layout ILayouter){
+
+}
+
+fn (t &FillLayout) get_layout() &IContainer {
+	return 0
+}
+
 fn (b mut FillLayout) resize(w, h int) {
 	b.width = w
 	b.height = h

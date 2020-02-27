@@ -95,6 +95,14 @@ fn (c &Stack) size() (int, int) {
 	return c.width, c.height
 }
 
+fn (t &Stack) set_layout(layout ILayouter){
+
+}
+
+fn (t &Stack) get_layout() &IContainer {
+	return 0
+}
+
 fn (b mut Stack) draw() {
 	mut per_child_size := b.get_height()
 	mut pos := b.get_y_axis()

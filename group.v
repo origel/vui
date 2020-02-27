@@ -119,7 +119,13 @@ fn (t &Group) unfocus_all() {
 
 fn (t &Group) resize(width, height int) {
 }
+fn (t &Group) set_layout(layout ILayouter){
 
+}
+
+fn (t &Group) get_layout() &IContainer {
+	return 0
+}
 fn (t &Group) get_user_ptr() voidptr {
     parent := t.parent
     return parent.get_user_ptr()

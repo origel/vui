@@ -308,6 +308,15 @@ fn (window &vui.Window) resize(width, height int) {
 
 }
 
+fn (window &vui.Window) set_layout(layout ILayouter){
+
+}
+
+fn (window &vui.Window) get_layout() &IContainer {
+	return 0
+}
+
+
 fn (window &vui.Window) unfocus_all() {
 	for child in window.children {
 		child.unfocus()
