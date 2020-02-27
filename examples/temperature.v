@@ -7,40 +7,40 @@ const (
 
 struct App {
 mut:
-    txt_box_celsius ui.TextBox
-    txt_box_fahrenheit ui.TextBox
-    lbl_fahrenheit &ui.Label
-    lbl_celsius &ui.Label
-    window     &ui.Window
+    txt_box_celsius vui.TextBox
+    txt_box_fahrenheit vui.TextBox
+    lbl_fahrenheit &vui.Label
+    lbl_celsius &vui.Label
+    window     &vui.Window
 }
 
 fn main() {
     mut app := &App{}
-    window := ui.window({
+    window := vui.window({
         width: win_width
         height: win_height
         title: 'Temperature Conv.'
         user_ptr: app
     },[
-     ui.IWidgeter(ui.row({
+     vui.IWidgeter(vui.row({
             stretch: true
             alignment: .center
-            margin: ui.MarginConfig{5,5,5,5}
+            margin: vui.MarginConfig{5,5,5,5}
             spacing: 10
         }, [
-            ui.IWidgeter(ui.label({
+            vui.IWidgeter(vui.label({
                 text: 'Celsius = '
             })), 
-            ui.textbox({
+            vui.textbox({
                 width: 70
                 on_key_up: on_cel_key_up
                 is_numeric: true
                 ref: &app.txt_box_celsius
             }),
-			ui.label({
+			vui.label({
                 text: 'Fahrenheit'
             }),
-            ui.textbox({
+            vui.textbox({
                 width: 70
                 on_key_up: on_fah_key_up
                 is_numeric: true
@@ -51,7 +51,7 @@ fn main() {
     ])
 
     app.window = window
-    ui.run(window)
+    vui.run(window)
 }
 
 fn on_cel_key_up(app mut App){

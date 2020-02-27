@@ -8,55 +8,55 @@ const (
 
 struct App {
 mut:
-	lbl_elapsed_value ui.Label
-	progress_bar ui.ProgressBar
-	slider ui.Slider
-	window     &ui.Window
+	lbl_elapsed_value vui.Label
+	progress_bar vui.ProgressBar
+	slider vui.Slider
+	window     &vui.Window
 	duration f32 = 25.0
 	elapsed_time f32 = 0.0
 }
 
 fn main() {
 	mut app := &App{}
-	window := ui.window({
+	window := vui.window({
 		width: win_width
 		height: win_height
 		title: 'Timer'
 		user_ptr: app
 	}, [
-		ui.IWidgeter(ui.column({
+		vui.IWidgeter(vui.column({
 			stretch: true
-			margin: ui.MarginConfig{5,5,5,5}
+			margin: vui.MarginConfig{5,5,5,5}
 			alignment: .left
 		}, [
-		ui.IWidgeter(ui.row({
+		vui.IWidgeter(vui.row({
 			alignment: .top
 			spacing: 10
 		}, [
-			ui.IWidgeter(ui.column({
+			vui.IWidgeter(vui.column({
 				alignment: .left
 				spacing: 10
 			}, [
-				ui.IWidgeter(ui.label({
+				vui.IWidgeter(vui.label({
 					text: 'Elapsed Time:'
 				})),
-				ui.label({
+				vui.label({
 					text: 'Duration:'
 				}),
-				ui.button({
+				vui.button({
 					text: 'Reset'
 					onclick: on_reset
 				})
 			])),
-			ui.column({
+			vui.column({
 				alignment: .left
 				spacing: 10
 			}, [
-				ui.IWidgeter(ui.label({
+				vui.IWidgeter(vui.label({
 					text: '00.0s'
 					ref:  &app.lbl_elapsed_value
 				})),
-				ui.slider({
+				vui.slider({
 					width: 180
 					height: 20
 					orientation: .horizontal
@@ -68,7 +68,7 @@ fn main() {
 				})
 			])
 		])),
-			ui.progressbar({
+			vui.progressbar({
 				height: 20
 				val: 0
 				max: 100
@@ -78,7 +78,7 @@ fn main() {
 	])
 	app.window = window
 	go app.timer()
-	ui.run(window)
+	vui.run(window)
 }
 
 fn on_value_changed(app mut App) {

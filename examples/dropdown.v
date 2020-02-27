@@ -7,35 +7,35 @@ const (
 
 struct App {
 mut:
-	dropdown   &ui.Dropdown
-	window     &ui.Window
+	dropdown   &vui.Dropdown
+	window     &vui.Window
 }
 
 fn main() {
 	mut app := &App{}
-	window := ui.window({
+	window := vui.window({
 		width: win_width
 		height: win_height
 		title: 'Dropdown'
 		user_ptr: app
 	}, [
-		ui.IWidgeter(ui.column({
+		vui.IWidgeter(vui.column({
 			stretch: true
 			alignment: .left
-			margin: ui.MarginConfig{5,5,5,5}
+			margin: vui.MarginConfig{5,5,5,5}
 		},
 		[
-			ui.IWidgeter(ui.dropdown({
+			vui.IWidgeter(vui.dropdown({
 				width: 140
 				def_text: "Select an option"
 				items: [
-					ui.DropdownItem{text:'Delete all users'},
-					ui.DropdownItem{text:'Export users'},
-					ui.DropdownItem{text:'Exit'},
+					vui.DropdownItem{text:'Delete all users'},
+					vui.DropdownItem{text:'Export users'},
+					vui.DropdownItem{text:'Exit'},
 				]
 			}))
 		]))
 	])
 	app.window = window
-	ui.run(window)
+	vui.run(window)
 }

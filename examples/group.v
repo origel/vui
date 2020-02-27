@@ -7,50 +7,50 @@ const (
 
 struct App {
 mut:
-	window     &ui.Window
+	window     &vui.Window
 }
 
 fn main() {
 	mut app := &App{}
-	window := ui.window({
+	window := vui.window({
 		width: win_width
 		height: win_height
 		title: 'Group Demo'
 		user_ptr: app
 	}, [
-		ui.IWidgeter(ui.group({
+		vui.IWidgeter(vui.group({
 		    x:20
 		    y:20
 			title: 'Group Demo'
 			children: [
-				ui.IWidgeter(ui.textbox({
+				vui.IWidgeter(vui.textbox({
 					max_len: 20
 					width: 200
 					placeholder: 'First name'
 				})),
-				ui.IWidgeter(ui.textbox({
+				vui.IWidgeter(vui.textbox({
 					max_len: 50
 					width: 200
 					placeholder: 'Last name'
 				})),
-				ui.checkbox({
+				vui.checkbox({
 					checked: true
 					text: 'Online registration1'
 				}),
-				ui.checkbox({
+				vui.checkbox({
 					checked: true
 					text: 'Online registration2'
 				}),
-				ui.checkbox({
+				vui.checkbox({
 					checked: true
 					text: 'Online registration3'
 				}),
-				ui.button({
+				vui.button({
 					text: 'Add user'
 				}),
 			]
 		}))
 	])
 	app.window = window
-	ui.run(window)
+	vui.run(window)
 }

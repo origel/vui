@@ -9,52 +9,52 @@ const (
 
 struct App {
 mut:
-	x_transition ui.Transition
-	y_transition ui.Transition
-	picture ui.Picture
+	x_transition vui.Transition
+	y_transition vui.Transition
+	picture vui.Picture
 	state   int
-	window  &ui.Window
+	window  &vui.Window
 }
 
 fn main() {
 	mut app := &App{
 		state: 0
 	}
-	window := ui.window({
+	window := vui.window({
 		width: win_width
 		height: win_height
 		title: 'V UI Demo'
 		user_ptr: app
 	},
 	[
-		ui.IWidgeter(ui.column({
+		vui.IWidgeter(vui.column({
 			stretch: true
-			margin: ui.MarginConfig{5,5,5,5}
+			margin: vui.MarginConfig{5,5,5,5}
 		},[
-			ui.IWidgeter(ui.button({
+			vui.IWidgeter(vui.button({
 				text: 'Slide'
 				onclick: btn_toggle_click
 			})),
-			ui.picture({
+			vui.picture({
 				width: picture_width_and_height
 				height: picture_width_and_height
 				path: os.resource_abs_path('logo.png')
 				ref: &app.picture
 			}),
-			ui.transition({
+			vui.transition({
 				duration: 750
-				easing: ui.easing(.ease_in_out_cubic)
+				easing: vui.easing(.ease_in_out_cubic)
 				ref: &app.x_transition
 			}),
-			ui.transition({
+			vui.transition({
 				duration: 750
-				easing: ui.easing(.ease_in_out_quart)
+				easing: vui.easing(.ease_in_out_quart)
 				ref: &app.y_transition
 			})
 		]))
 	])
 	app.window = window
-	ui.run(window)
+	vui.run(window)
 }
 
 fn btn_toggle_click(app mut App) {

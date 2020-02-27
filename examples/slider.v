@@ -7,26 +7,26 @@ const (
 
 struct App {
 mut:
-	hor_slider  &ui.Slider
-	vert_slider &ui.Slider
-	window      &ui.Window
+	hor_slider  &vui.Slider
+	vert_slider &vui.Slider
+	window      &vui.Window
 }
 
 fn main() {
 	mut app := &App{}
-	window := ui.window({
+	window := vui.window({
 		width: win_width
 		height: win_height
 		title: 'Slider Example'
 		user_ptr: app
 	}, [
-		ui.IWidgeter(ui.row({
+		vui.IWidgeter(vui.row({
 			stretch: true
 			alignment: .center
-			margin: ui.MarginConfig{5,5,5,5}
+			margin: vui.MarginConfig{5,5,5,5}
 			spacing: 10
 		}, [
-			ui.IWidgeter(ui.slider({
+			vui.IWidgeter(vui.slider({
 				width: 20
 				height: 200
 				orientation: .vertical
@@ -34,7 +34,7 @@ fn main() {
 				val: 0
 				on_value_changed: on_vert_value_changed
 			})),
-			ui.slider({
+			vui.slider({
 				width: 200
 				height: 20
 				orientation: .horizontal
@@ -45,7 +45,7 @@ fn main() {
 		]))
 	])
 	app.window = window
-	ui.run(window)
+	vui.run(window)
 }
 
 fn on_hor_value_changed(app mut App) {

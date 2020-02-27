@@ -12,7 +12,7 @@ struct App {
 mut:
 	txtbox     vui.TextBox
 	window     &vui.Window
-	rows       []&ui.ILayouter
+	rows       []&vui.ILayouter
 	result     f64
 	is_float   bool
 	new_number bool
@@ -32,7 +32,7 @@ fn main() {
 		window: 0
 	}
 	mut children := [
-		vui.IWidgeter(ui.textbox({
+		vui.IWidgeter(vui.textbox({
 			placeholder: '0'
 			width: 135
 			read_only: true
@@ -40,7 +40,7 @@ fn main() {
 		}))
 	]
 	for op in ops {
-		children << ui.row({spacing: 5}, get_row(op))
+		children << vui.row({spacing: 5}, get_row(op))
 	}
 	app.window = vui.window({
 		width: 145
@@ -48,13 +48,13 @@ fn main() {
 		title: 'V Calc'
 		user_ptr: app
 	}, [
-		ui.IWidgeter(ui.column({
+		vui.IWidgeter(vui.column({
 			stretch: true
-			margin: ui.MarginConfig{5,5,5,5}
+			margin: vui.MarginConfig{5,5,5,5}
 			spacing: 5
 		}, children))
 	])
-	ui.run(app.window)
+	vui.run(app.window)
 }
 
 fn btn_click(app mut App, btn &vui.Button) {
@@ -188,11 +188,11 @@ fn (app mut App) calculate() {
 	// eprintln('-------- result: $result | i: $i -------------------')
 }
 
-fn get_row(ops []string) []ui.IWidgeter {
-	mut children := []ui.IWidgeter
+fn get_row(ops []string) []vui.IWidgeter {
+	mut children := []vui.IWidgeter
 	for op in ops {
 		if op == ' ' {continue}
-		children << ui.IWidgeter(ui.button({
+		children << vui.IWidgeter(vui.button({
 			text: op
 			onclick: btn_click
 			width: bwidth
