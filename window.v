@@ -319,6 +319,10 @@ fn (window &vui.Window) resize(width, height int) {
 		return
 	}
 
+    mut gg := window.ui.gg
+	gg.width = width
+	gg.height = height
+
     lay := *layout
 	//lay.layout(0, 0, width, height, window.children)
 	mut start_x := 0

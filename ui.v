@@ -159,11 +159,13 @@ pub fn run(window vui.Window) {
 		}
 		// Triggers a re-render in case any function requests it.
 		// Transitions & animations, for example.
-		if ui.redraw_requested {
+		//if ui.redraw_requested {
 			ui.redraw_requested = false
 			glfw.post_empty_event()
-		}
+		//}
 		ui.gg.render()
+		println("gg width: $ui.gg.width")
+		println("gg height: $ui.gg.height")
 	}
 	ui.window.glfw_obj.destroy()
 	ui.closed = true
