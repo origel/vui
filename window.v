@@ -21,9 +21,10 @@ pub type ScrollFn fn(e MouseEvent, func voidptr)
 pub type MouseMoveFn fn(e MouseEvent, func voidptr)
 
 pub struct Window {
-mut:
+pub mut:
 	glfw_obj    &glfw.Window
 	ui &UI
+	layout &ILayouter
 	children    []IWidgeter
 	has_textbox bool // for initial focus
 	tab_index   int
@@ -52,6 +53,7 @@ pub:
 	user_ptr      voidptr
 	draw_fn       DrawFn
 	bg_color gx.Color = default_window_color
+	layout &ILayouter
 }
 
 pub fn window(cfg WindowConfig, children []IWidgeter) &vui.Window {
@@ -97,6 +99,7 @@ pub fn window(cfg WindowConfig, children []IWidgeter) &vui.Window {
 		bg_color: cfg.bg_color
 		width: cfg.width
 		height: cfg.height,
+		layout: cfg.layout
 		children: children
 	}
 	for child in window.children {
@@ -127,9 +130,9 @@ fn window_mouse_move(glfw_wnd voidptr, x, y f64) {
 
 fn window_resize(glfw_wnd voidptr, width int, height int) {
 	ui := &UI(glfw.get_window_user_pointer(glfw_wnd))
-	window := vui.window
+	window := ui.window
 
-	//window.resize(width, height)
+	window.resize(width, height)
 }
 
 fn window_click(glfw_wnd voidptr, button, action, mods int) {
@@ -254,32 +257,36 @@ pub fn (b &vui.Window) always_on_top(val bool) {
 }
 
 // TODO remove this
-fn foo(w IWidgeter) {}
+fn foo1(w IWidgeter) {}
 fn foo2(l IContainer) {}
+fn foo3(l ILayouter) {}
 
-fn bar() {
-	foo(&TextBox{})
-	foo(&Button{})
-	foo(&ProgressBar{})
-	foo(&Slider{})
-	foo(&CheckBox{})
-	foo(&Label{})
-	foo(&Radio{})
-	foo(&Picture{})
-	foo(&Canvas{})
-	foo(&Menu{})
-	foo(&Dropdown{})
-	foo(&Transition{})
-	foo(&Stack{})
-	foo(&Switch{})
-	foo(&Rectangle{})
-	foo(&Group{})
+fn bar1() {
+	foo1(&TextBox{})
+	foo1(&Button{})
+	foo1(&ProgressBar{})
+	foo1(&Slider{})
+	foo1(&CheckBox{})
+	foo1(&Label{})
+	foo1(&Radio{})
+	foo1(&Picture{})
+	foo1(&Canvas{})
+	foo1(&Menu{})
+	foo1(&Dropdown{})
+	foo1(&Transition{})
+	foo1(&Stack{})
+	foo1(&Switch{})
+	foo1(&Rectangle{})
+	foo1(&Group{})
 }
 
 fn bar2() {
 	foo2(&vui.Window{})
 	foo2(&Stack{})
-	foo(&FillLayout{})
+}
+
+fn bar3() {
+	foo3(&FillLayout{})
 }
 
 pub fn (w mut vui.Window) set_title(title string) {
@@ -305,15 +312,31 @@ fn (w &vui.Window) size() (int, int) {
 }
 
 fn (window &vui.Window) resize(width, height int) {
+	layout := window.get_layout()
 
+	if isnil(layout){
+	    println("no layout")
+		return
+	}
+
+    lay := *layout
+	//lay.layout(0, 0, width, height, window.children)
+	mut start_x := 0
+	mut widgets := window.children
+	mut w := width/widgets.len
+	for widget in widgets {
+		widget.set_pos(start_x, 0)
+		widget.propose_size(w, height)
+		start_x = start_x + w
+	}
 }
 
 fn (window &vui.Window) set_layout(layout ILayouter){
 
 }
 
-fn (window &vui.Window) get_layout() &IContainer {
-	return 0
+fn (window &vui.Window) get_layout() &ILayouter {
+	return window.layout
 }
 
 

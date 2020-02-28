@@ -102,7 +102,8 @@ fn (b mut Button) propose_size(w, h int) (int, int) {
 }
 
 fn (b mut Button) draw() {
-	// b.ui.gg.draw_empty_rect(b.x, b.y, b.width, b.height, gx.Black)
+	b.ui.gg.draw_rect(b.x, b.y, b.width, b.height, gx.White)
+
 	text_width, text_height := b.ui.ft.text_size(b.text)
 	w2 := text_width /2
 	h2 := text_height /2

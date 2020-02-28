@@ -69,7 +69,7 @@ pub interface IWidgeter {
 }
 
 pub interface ILayouter {
-
+	layout(x, y, width, height int, children []IWidgeter)
 }
 
 // TODO rename to `Container` once interfaces allow that :)
@@ -84,7 +84,7 @@ pub interface IContainer {
 	draw()
 	resize(w,h int)
 	set_layout(ILayouter)
-	get_layout() &IContainer
+	get_layout() &ILayouter
 }
 
 

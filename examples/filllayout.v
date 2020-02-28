@@ -18,12 +18,10 @@ fn main() {
 		title: 'FillLayout'
 		user_ptr: app
 		resizable: true
+		layout: vui.filllayout({
+			align: .horizontal
+		})
 	}, [
-		vui.IWidgeter(vui.fill_layout({
-			width: win_width
-			height: win_height
-			align: .vertical //vertical //horizontal
-		}, [
 			vui.IWidgeter(vui.button({
 				text: 'Button1'
 			})),
@@ -36,7 +34,6 @@ fn main() {
 			vui.button({
 				text: 'Button4'
 			}),
-		]))
 	])
 
 	app.window = window
